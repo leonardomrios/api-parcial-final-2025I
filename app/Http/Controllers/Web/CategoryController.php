@@ -30,7 +30,9 @@ class CategoryController extends Controller
         $search = $request->input('search');
 
         // Construimos la consulta base
-        $query = Category::query();
+        // withCount('computers') agrega un atributo 'computers_count' a cada categoría
+        // que contiene la cantidad de computadoras relacionadas SIN hacer N+1 queries
+        $query = Category::withCount('computers');
 
         // Si hay un término de búsqueda, filtramos por nombre
         // FILTRADO BACKEND: Usamos where + LIKE para buscar coincidencias parciales

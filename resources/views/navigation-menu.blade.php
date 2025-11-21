@@ -18,6 +18,9 @@
                     <x-nav-link href="{{ route('web.categories.index') }}" :active="request()->routeIs('web.categories.*')">
                         {{ __('Categorías') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('web.computers.index') }}" :active="request()->routeIs('web.computers.*')">
+                        {{ __('Computadoras') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -147,6 +150,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('web.categories.index') }}" :active="request()->routeIs('web.categories.*')">
                 {{ __('Categorías') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('web.computers.index') }}" :active="request()->routeIs('web.computers.*')">
+                {{ __('Computadoras') }}
             </x-responsive-nav-link>
         </div>
 

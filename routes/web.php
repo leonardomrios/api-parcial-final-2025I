@@ -31,4 +31,20 @@ Route::middleware([
         ->name('web.categories.update');
     Route::delete('/categories/{category}', [\App\Http\Controllers\Web\CategoryController::class, 'destroy'])
         ->name('web.categories.destroy');
+
+    // Rutas para el CRUD completo de computadoras (protegidas por autenticación)
+    Route::get('/computers', [\App\Http\Controllers\Web\ComputerController::class, 'index'])
+        ->name('web.computers.index');
+    Route::get('/computers/create', [\App\Http\Controllers\Web\ComputerController::class, 'create'])
+        ->name('web.computers.create');
+    Route::post('/computers', [\App\Http\Controllers\Web\ComputerController::class, 'store'])
+        ->name('web.computers.store');
+    Route::get('/computers/{computer}', [\App\Http\Controllers\Web\ComputerController::class, 'show'])
+        ->name('web.computers.show');
+    Route::get('/computers/{computer}/edit', [\App\Http\Controllers\Web\ComputerController::class, 'edit'])
+        ->name('web.computers.edit');
+    Route::put('/computers/{computer}', [\App\Http\Controllers\Web\ComputerController::class, 'update'])
+        ->name('web.computers.update');
+    Route::delete('/computers/{computer}', [\App\Http\Controllers\Web\ComputerController::class, 'destroy'])
+        ->name('web.computers.destroy');
 });

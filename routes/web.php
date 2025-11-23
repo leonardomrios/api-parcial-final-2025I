@@ -11,9 +11,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/dashboard', function () {
+    return \Inertia\Inertia::render('Dashboard');
+})->name('dashboard');
 
     // Rutas para el CRUD completo de categorías (protegidas por autenticación)
     // Nombres únicos con prefijo 'web.' para evitar conflicto con rutas del API

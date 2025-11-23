@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Computer;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ComputerController extends Controller
 {
@@ -32,7 +33,10 @@ class ComputerController extends Controller
                           ->paginate(10)
                           ->withQueryString();
         
-        return view('computers.index', compact('computers', 'search'));
+        return Inertia::render('Computers/Index', [
+            'computers' => $computers,
+            'search' => $search,
+        ]);
     }
 
     /**
@@ -44,7 +48,9 @@ class ComputerController extends Controller
     {
         $computer->load('category');
         
-        return view('computers.show', compact('computer'));
+        return Inertia::render('Computers/Show', [
+            'computer' => $computer,
+        ]);
     }
 
     /**
@@ -57,7 +63,9 @@ class ComputerController extends Controller
                              ->orderBy('category_name')
                              ->get();
         
-        return view('computers.create', compact('categories'));
+        return Inertia::render('Computers/Create', [
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -122,7 +130,10 @@ class ComputerController extends Controller
                              ->orderBy('category_name')
                              ->get();
         
-        return view('computers.edit', compact('computer', 'categories'));
+        return Inertia::render('Computers/Edit', [
+            'computer' => $computer,
+            'categories' => $categories,
+        ]);
     }
 
     /**

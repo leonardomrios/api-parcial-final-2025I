@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CategoryController extends Controller
 {
@@ -46,8 +47,11 @@ class CategoryController extends Controller
                            ->paginate(10) // 10 registros por página
                            ->withQueryString(); // Mantiene los parámetros de búsqueda en los links de paginación
 
-        // Retornamos la vista con las categorías y el término de búsqueda
-        return view('categories.index', compact('categories', 'search'));
+        // Retornamos la vista con las categorías y el término de búsqueda usando Inertia
+        return Inertia::render('Categories/Index', [
+            'categories' => $categories,
+            'search' => $search,
+        ]);
     }
 
     /**
@@ -81,8 +85,11 @@ class CategoryController extends Controller
         // Contar computadoras para estadísticas
         $totalComputers = $category->computers->count();
         
-        // Retornar vista con la categoría y sus computadoras
-        return view('categories.show', compact('category', 'totalComputers'));
+        // Retornar vista con la categoría y sus computadoras usando Inertia
+        return Inertia::render('Categories/Show', [
+            'category' => $category,
+            'totalComputers' => $totalComputers,
+        ]);
     }
 
     /**
@@ -92,7 +99,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        return Inertia::render('Categories/Create');
     }
 
     /**
@@ -161,7 +168,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.edit', compact('category'));
+        return Inertia::render('Categories/Edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
